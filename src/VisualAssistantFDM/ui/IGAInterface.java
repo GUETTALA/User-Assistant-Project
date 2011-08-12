@@ -842,49 +842,24 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
             visu3D4 = null;
         }
         if(visu3D5!=null){
-            Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            System.out.println ( "Max : " + r.maxMemory());
-            System.out.println ( "Free : " + r.freeMemory());
             visu3D5.destroy();
             visu3D5 = null;
-            r.gc(); // Appel implicite au garbage collector
-            System.out.println ("Free : " + r.freeMemory());
         }
         if(visu3D6!=null){
-            Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            System.out.println ( "Max : " + r.maxMemory());
-            System.out.println ( "Free : " + r.freeMemory());
             visu3D6.destroy();
             visu3D6 = null;
-            r.gc(); // Appel implicite au garbage collector
-            System.out.println ("Free : " + r.freeMemory());
         }
         if(visu3D7!=null){
-            Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            System.out.println ( "Max : " + r.maxMemory());
-            System.out.println ( "Free : " + r.freeMemory());
             visu3D7.destroy();
             visu3D7 = null;
-            r.gc(); // Appel implicite au garbage collector
-            System.out.println ("Free : " + r.freeMemory());
         }
         if(visu3D8!=null){
-            Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            System.out.println ( "Max : " + r.maxMemory());
-            System.out.println ( "Free : " + r.freeMemory());
             visu3D8.destroy();
             visu3D8 = null;
-            r.gc(); // Appel implicite au garbage collector
-            System.out.println ("Free : " + r.freeMemory());
         }
         if(visu3D9!=null){
-            Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            System.out.println ( "Max : " + r.maxMemory());
-            System.out.println ( "Free : " + r.freeMemory());
             visu3D9.destroy();
             visu3D9 = null;
-            r.gc(); // Appel implicite au garbage collector
-            System.out.println ("Free : " + r.freeMemory());
         }
 
 
@@ -2048,13 +2023,8 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
     private void updatePreview(String path, int profil){
         
         if(visu3D9!=null){
-//        Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-//        System.out.println ( "Max : " + r.maxMemory());
-//        System.out.println ( "Free : " + r.freeMemory());
         visu3D9.destroy();
         visu3D9 = null;
-//        r.gc(); // Appel implicite au garbage collector
-//        System.out.println ("Free : " + r.freeMemory());
         }
 
         visu3D9 = new Visualisation_Nuage_3D(0, 0, 0);
