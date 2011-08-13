@@ -69,6 +69,7 @@ import visualassistantfacv.VRMinerVisualAssistant;
 import VisualAssistantFDM.visualisation.ui.Visualisation;
 import java.util.prefs.Preferences;
 import javax.swing.JDialog;
+import vrminerlib.control.meta.NoneVRMMetaControlInfo;
 import vrminerlib.object3d.Object3D;
 import vrminerlib.scene.PointOfView;
 import vrminerlib.scene.PointOfViewMouseAdapter;
@@ -3745,11 +3746,6 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
         protected Void doInBackground() throws Exception {
             for (int i = 0; i < VisualisationsFilesNames.size(); i++) {
 
-//                initialisationNuage3D();
-//                visu3D1.ConfigurationNuage3D(filePathName, "profil"+(i+1));
-//                visu3D1.createScene();
-//                scrollpane1.setViewportView(visu3D1.getCustomCanvas3D());
-
                 ImageIcon icon;
                 int id = VisualisationsFilesNames.get(i).getIdimage();
                 shape = VisualisationsFilesNames.get(i).getNom();
@@ -3885,13 +3881,8 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
                 idMethode = idtable;
                 //creer la nouvelle scene 3D de la visualisation choisie
                 if(visu3D!=null){
-                Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-                //System.out.println ( "Max : " + r.maxMemory());
-                //System.out.println ( "Free : " + r.freeMemory());
                 visu3D.destroy();
                 visu3D = null;
-                r.gc(); // Appel implicite au garbage collector
-                //System.out.println ("Free : " + r.freeMemory());
                 }
                 updatePreview3D(filePathName, idMethode);
                 shape = new LoadVisualizations().getIdElement(idMethode);
@@ -3951,6 +3942,7 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
         updatePreview3D(filePathName,1);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D1.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D2.ConfigurationNuage3D(XMLFilepath, "profil"+9);
         visu3D2.createScene();
@@ -3961,6 +3953,7 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
         updatePreview3D(filePathName,9);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D2.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D3.ConfigurationNuage3D(XMLFilepath, "profil"+2);
         visu3D3.createScene();
@@ -3971,6 +3964,7 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
         updatePreview3D(filePathName,2);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D3.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D4.ConfigurationNuage3D(XMLFilepath, "profil"+8);
         visu3D4.createScene();
@@ -3980,7 +3974,9 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
         public void onMouseLeftClick(MouseEvent m, PointOfView p, Object3D o){
         updatePreview3D(filePathName,8);//afficher le profil i : qui est passé en paramètre
         }
+        
         });
+        visu3D4.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D5.ConfigurationNuage3D(XMLFilepath, "profil"+3);
         visu3D5.createScene();
@@ -3991,6 +3987,7 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
         updatePreview3D(filePathName,3);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D5.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D6.ConfigurationNuage3D(XMLFilepath, "profil"+6);
         visu3D6.createScene();
@@ -4001,6 +3998,7 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
         updatePreview3D(filePathName,6);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D6.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D7.ConfigurationNuage3D(XMLFilepath, "profil"+4);
         visu3D7.createScene();
@@ -4011,6 +4009,7 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
         updatePreview3D(filePathName,4);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D7.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D8.ConfigurationNuage3D(XMLFilepath, "profil"+7);
         visu3D8.createScene();
@@ -4021,6 +4020,7 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
         updatePreview3D(filePathName,7);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D8.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D9.ConfigurationNuage3D(XMLFilepath, "profil"+5);
         visu3D9.createScene();
@@ -4031,6 +4031,7 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
         updatePreview3D(filePathName,5);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D9.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
                
     }
 
@@ -4098,93 +4099,48 @@ private void UserPreferencesButtonActionPerformed(java.awt.event.ActionEvent evt
     private void initialisationNuage3DEmpty() throws Exception{
 
         if(visu3D1!=null){
-            //Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            //System.out.println ( "Max : " + r.maxMemory());
-            //System.out.println ( "Free : " + r.freeMemory());
             visu3D1.destroy();
             visu3D1 = null;
-            //r.gc(); // Appel implicite au garbage collector
-            //System.out.println ("Free : " + r.freeMemory());
         }
 
         if(visu3D2!=null){
-            //Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            //System.out.println ( "Max : " + r.maxMemory());
-            //System.out.println ( "Free : " + r.freeMemory());
             visu3D2.destroy();
             visu3D2 = null;
-            //r.gc(); // Appel implicite au garbage collector
-            //System.out.println ("Free : " + r.freeMemory());
         }
 
         if(visu3D3!=null){
-            //Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            //System.out.println ( "Max : " + r.maxMemory());
-            //System.out.println ( "Free : " + r.freeMemory());
             visu3D3.destroy();
             visu3D3 = null;
-            //r.gc(); // Appel implicite au garbage collector
-            //System.out.println ("Free : " + r.freeMemory());
         }
 
         if(visu3D4!=null){
-            //Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            //System.out.println ( "Max : " + r.maxMemory());
-            //System.out.println ( "Free : " + r.freeMemory());
             visu3D4.destroy();
             visu3D4 = null;
-            //r.gc(); // Appel implicite au garbage collector
-            //System.out.println ("Free : " + r.freeMemory());
         }
 
         if(visu3D5!=null){
-            //Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            //System.out.println ( "Max : " + r.maxMemory());
-            //System.out.println ( "Free : " + r.freeMemory());
             visu3D5.destroy();
             visu3D5 = null;
-            //r.gc(); // Appel implicite au garbage collector
-            //System.out.println ("Free : " + r.freeMemory());
         }
 
         if(visu3D6!=null){
-            //Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            //System.out.println ( "Max : " + r.maxMemory());
-            //System.out.println ( "Free : " + r.freeMemory());
             visu3D6.destroy();
             visu3D6 = null;
-            //r.gc(); // Appel implicite au garbage collector
-            //System.out.println ("Free : " + r.freeMemory());
         }
 
         if(visu3D7!=null){
-            //Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            //System.out.println ( "Max : " + r.maxMemory());
-            //System.out.println ( "Free : " + r.freeMemory());
             visu3D7.destroy();
             visu3D7 = null;
-            //r.gc(); // Appel implicite au garbage collector
-            //System.out.println ("Free : " + r.freeMemory());
         }
 
         if(visu3D8!=null){
-            //Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            //System.out.println ( "Max : " + r.maxMemory());
-            //System.out.println ( "Free : " + r.freeMemory());
             visu3D8.destroy();
             visu3D8 = null;
-            //r.gc(); // Appel implicite au garbage collector
-            //System.out.println ("Free : " + r.freeMemory());
         }
 
         if(visu3D9!=null){
-            //Runtime r = Runtime.getRuntime(); // Créer un objet de type Runtime
-            //System.out.println ( "Max : " + r.maxMemory());
-            //System.out.println ( "Free : " + r.freeMemory());
             visu3D9.destroy();
             visu3D9 = null;
-            //r.gc(); // Appel implicite au garbage collector
-            //System.out.println ("Free : " + r.freeMemory());
         }
 
     }

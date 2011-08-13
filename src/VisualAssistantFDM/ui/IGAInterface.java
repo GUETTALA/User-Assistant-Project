@@ -48,6 +48,7 @@ import visualassistantfacv.VRMinerVisualAssistant;
 import VisualAssistantFDM.visualisation.ui.Visualisation;
 import visualisation3d.vrmNuage3D.Visualisation_Nuage_3D;
 import visualisation3d.xml.NUAGE3D;
+import vrminerlib.control.meta.NoneVRMMetaControlInfo;
 import vrminerlib.io.VRMXML;
 import vrminerlib.object3d.Object3D;
 import vrminerlib.scene.PointOfView;
@@ -857,11 +858,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
             visu3D8.destroy();
             visu3D8 = null;
         }
-        if(visu3D9!=null){
-            visu3D9.destroy();
-            visu3D9 = null;
-        }
-
 
     }
 
@@ -875,7 +871,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         visu3D6 = new Visualisation_Nuage_3D(0, 0, 0);
         visu3D7 = new Visualisation_Nuage_3D(0, 0, 0);
         visu3D8 = new Visualisation_Nuage_3D(0, 0, 0);
-        visu3D9 = new Visualisation_Nuage_3D(0, 0, 0);
         
     }
 
@@ -1054,7 +1049,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         int insertedValues = 0;
         int PmuteGrow = 1;
         System.out.println("Le nombre d'attributs de données : "+DataAttributeChromosome.size());
-        //fils_ = DataAttributeChromosome;
         while (insertedValues < PopulationSize) {
             /* initilisation du nouveau vecteur individu  */
             List<Visualisation> fils = new ArrayList<Visualisation>();
@@ -1251,6 +1245,7 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         updatePreview(XMLFilepath,0);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D1.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D2.ConfigurationNuage3D(XMLFilepath, "profil"+1);
         visu3D2.createScene();
@@ -1262,6 +1257,7 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         updatePreview(XMLFilepath,1);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D2.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D3.ConfigurationNuage3D(XMLFilepath, "profil"+2);
         visu3D3.createScene();
@@ -1272,6 +1268,7 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         updatePreview(XMLFilepath,2);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D3.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D4.ConfigurationNuage3D(XMLFilepath, "profil"+3);
         visu3D4.createScene();
@@ -1282,6 +1279,7 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         updatePreview(XMLFilepath,3);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D4.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D5.ConfigurationNuage3D(XMLFilepath, "profil"+4);
         visu3D5.createScene();
@@ -1292,6 +1290,7 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         updatePreview(XMLFilepath,4);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D5.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D6.ConfigurationNuage3D(XMLFilepath, "profil"+5);
         visu3D6.createScene();
@@ -1302,6 +1301,7 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         updatePreview(XMLFilepath,5);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D6.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D7.ConfigurationNuage3D(XMLFilepath, "profil"+6);
         visu3D7.createScene();
@@ -1312,6 +1312,7 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         updatePreview(XMLFilepath,6);//afficher le profil i : qui est passé en paramètre
         }
         });
+        visu3D7.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
 
         visu3D8.ConfigurationNuage3D(XMLFilepath, "profil"+7);
         visu3D8.createScene();
@@ -1322,8 +1323,8 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         updatePreview(XMLFilepath,7);//afficher le profil i : qui est passé en paramètre
         }
         });
-
- 
+        visu3D8.getMainPointOfView().getControlManager().setCurrentMetaControl(new NoneVRMMetaControlInfo());
+        
     }
 
     public DefaultTableModel Affichage(DefaultTableModel individu, List<Appariement> Matching, List<Visualisation> chromosomes) throws Exception{
