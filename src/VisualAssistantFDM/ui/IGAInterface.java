@@ -46,6 +46,8 @@ import VisualAssistantFDM.visualisation.ui.Normalisation;
 import visualassistantfacv.OffScreenCanvas3D;
 import visualassistantfacv.VRMinerVisualAssistant;
 import VisualAssistantFDM.visualisation.ui.Visualisation;
+import java.awt.ScrollPane;
+import javax.swing.JScrollPane;
 import visualisation3d.vrmNuage3D.Visualisation_Nuage_3D;
 import visualisation3d.xml.NUAGE3D;
 import vrminerlib.control.meta.NoneVRMMetaControlInfo;
@@ -633,7 +635,9 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
                 individuSelect = getIndividuSelect(individuSelect);
                 CrossOverPopulationDataAttribute = GetSelectedIndividus(individuSelect);
                 try {
+                    initilisationBackground();
                     CrossOver(CrossOverPopulationDataAttribute);
+                    scrollpane9.setViewportView(null);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -655,7 +659,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
                     enregistreFichier(XMLfilepathName);
                 }
             }
-            //new ApplyNewConfiguration(XMLfilepathName, indiceSelectedProfil);
         } catch (Exception ex) {
             Logger.getLogger(VRMinerVisualAssistant.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -675,7 +678,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
             if(state==false){
               Step5.setEnabled(false);
               CreateFinalProfilButton.setEnabled(false);
-              
             }
         }
     }//GEN-LAST:event_CheckBox1ItemStateChanged
@@ -694,7 +696,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
             if(state==false){
               Step5.setEnabled(false);
               CreateFinalProfilButton.setEnabled(false);
-              
             }
         }
     }//GEN-LAST:event_CheckBox2ItemStateChanged
@@ -713,7 +714,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
             if(state==false){
               Step5.setEnabled(false);
               CreateFinalProfilButton.setEnabled(false);
-              
             }
         }
     }//GEN-LAST:event_CheckBox3ItemStateChanged
@@ -732,7 +732,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
             if(state==false){
               Step5.setEnabled(false);
               CreateFinalProfilButton.setEnabled(false);
-              
             }
         }
     }//GEN-LAST:event_CheckBox4ItemStateChanged
@@ -751,7 +750,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
             if(state==false){
               Step5.setEnabled(false);
               CreateFinalProfilButton.setEnabled(false);
-              
             }
         }
     }//GEN-LAST:event_CheckBox5ItemStateChanged
@@ -789,7 +787,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
             if(state==false){
               Step5.setEnabled(false);
               CreateFinalProfilButton.setEnabled(false);
-              
             }
         }
     }//GEN-LAST:event_CheckBox7ItemStateChanged
@@ -808,7 +805,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
             if(state==false){
               Step5.setEnabled(false);
               CreateFinalProfilButton.setEnabled(false);
-              
             }
         }
     }//GEN-LAST:event_CheckBox8ItemStateChanged
@@ -879,6 +875,17 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         for(int i=0; i<individuSelect.length; i++){
             individuSelect[i] = false;
         }
+    }
+    
+    private void initilisationBackground(){
+        panel1.setBackground(new Color(240, 240, 240));
+        panel2.setBackground(new Color(240, 240, 240));
+        panel3.setBackground(new Color(240, 240, 240));
+        panel4.setBackground(new Color(240, 240, 240));
+        panel5.setBackground(new Color(240, 240, 240));
+        panel6.setBackground(new Color(240, 240, 240));
+        panel7.setBackground(new Color(240, 240, 240));
+        panel8.setBackground(new Color(240, 240, 240));
     }
 
     public boolean isState(boolean[] individuSelect) {
@@ -1000,11 +1007,8 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
                }
            }
         }
-        //InitialIndividualMatchnig = getNewMatchingResult(OldInitialIndividual, Initial_v_attribte);
         OldInitialIndividual = new Matching().getListeTri(OldInitialIndividual);
-//        for(int n=0; n<OldInitialIndividual.size(); n++){
-//        System.out.println("Old "+OldInitialIndividual.get(n).getName()+" : New : "+Choosen_Individual_Value.get(n).getName());
-//        }
+        
         return OldInitialIndividual;
     }
 
@@ -1069,7 +1073,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
                 newInd.setName(DataAttributeChromosome.get(i).getName());
                 newInd.setType(DataAttributeChromosome.get(i).getType());
                 /* vérifier si le gène actuel doit subir une mutation  */
-//                System.out.println("Mutation Probability : "+Pmute);
                 if(Pm<=Pmute){
                 /* appliquer une mutation au gène actuel */
                 int NewValue = (int) Generate_NewWeidth(DataAttributeChromosome.get(i).getImportance());
@@ -1107,7 +1110,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         for(int x = 0; x<NewDataAttributePopulation.size(); x++){
             /* initilisation du nouveau vecteur matching de l'individu */
             MEC_fils = new ArrayList<Appariement>();
-            //System.out.println("Individual "+x);
             MEC_fils  = getNewMatchingResult(NewDataAttributePopulation.get(x), visualAttributeChromosome);
             Nouvelle_Population.add(MEC_fils);
         }
@@ -1237,11 +1239,10 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         visu3D1.ConfigurationNuage3D(XMLFilepath, "profil"+0);
         visu3D1.createScene();
         scrollpane1.setViewportView(visu3D1.getCustomCanvas3D());
-
+        
         visu3D1.addPointOfViewListener(visu3D1.getMainPointOfView().getName(), new PointOfViewMouseAdapter() {
         @Override
         public void onMouseLeftClick(MouseEvent m, PointOfView p, Object3D o){
-        panel1.setBackground(Color.YELLOW);
         updatePreview(XMLFilepath,0);//afficher le profil i : qui est passé en paramètre
         }
         });
@@ -1253,7 +1254,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         visu3D2.addPointOfViewListener(visu3D2.getMainPointOfView().getName(), new PointOfViewMouseAdapter() {
         @Override
         public void onMouseLeftClick(MouseEvent m, PointOfView p, Object3D o){
-        panel2.setBackground(Color.YELLOW);
         updatePreview(XMLFilepath,1);//afficher le profil i : qui est passé en paramètre
         }
         });
@@ -1343,6 +1343,7 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         for(int i=0; i<individuSelect.length; i++){
             individuSelect[i] = false;
         }
+        
        
      }
 
@@ -1350,42 +1351,34 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
 
         if(CheckBox1.isSelected()){
             indSelect[0] = true;
-            //nbIndivSelect = nbIndivSelect+1;
             indiceSelectedProfil = 0;
         }
         if(CheckBox2.isSelected()){
             indSelect[1] = true;
-            //nbIndivSelect = nbIndivSelect+1;
             indiceSelectedProfil = 1;
         }
         if(CheckBox3.isSelected()){
             indSelect[2] = true;
-            //nbIndivSelect = nbIndivSelect+1;
             indiceSelectedProfil = 2;
         }
         if(CheckBox4.isSelected()){
             indSelect[3] = true;
-            //nbIndivSelect = nbIndivSelect+1;
             indiceSelectedProfil = 3;
         }
         if(CheckBox5.isSelected()){
             indSelect[4] = true;
-            //nbIndivSelect = nbIndivSelect+1;
             indiceSelectedProfil = 4;
         }
         if(CheckBox6.isSelected()){
             indSelect[5] = true;
-            //nbIndivSelect = nbIndivSelect+1;
             indiceSelectedProfil = 5;
         }
         if(CheckBox7.isSelected()){
             indSelect[6] = true;
-            //nbIndivSelect = nbIndivSelect+1;
             indiceSelectedProfil = 6;
         }
         if(CheckBox8.isSelected()){
             indSelect[7] = true;
-            //nbIndivSelect = nbIndivSelect+1;
             indiceSelectedProfil = 7;
         }
 
@@ -1395,28 +1388,20 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
     public List<List<Visualisation>> GetSelectedIndividus(boolean [] individuSelect){
 
         int nbSelectionnes =0;
-        //List<List<Appariement>> bufferPopulation = new ArrayList<List<Appariement>>();
-        //NewDataAttributePopulation = new ArrayList<List<Visualisation>>();
         Buffer = new ArrayList<List<Visualisation>>();
-        //newPopulation = new ArrayList<List<Appariement>>();
         for (int i = 0; i < individuSelect.length; i++) {
             if(individuSelect[i]) {
                 nbSelectionnes++;
-                //NewDataAttributePopulation.add(i, DataAttributePopulation.get(i));
-                //newPopulation.add(i, InitialPopulation.get(i));
-                //bufferPopulation.add(InitialPopulation.get(i));
                 Buffer.add(DataAttributePopulation.get(i));
                 nbIndivSelect = Buffer.size();
              }
             else {
-                //NewDataAttributePopulation.add(i, null);
+                
             }
         }
 
         System.out.println("Le nombre d'individus sélectionnées est de 1 : "+Buffer.size());
         
-
-        //return bufferPopulation;
         return Buffer;
     }
 
@@ -1805,14 +1790,13 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         }
     }
 
-    static void ReadXMLFile(String fichier, int i) throws Exception {
-//          SAXBuilder sxb = new SAXBuilder();
-//          document = sxb.build(new File(fichier));
-//          racine = document.getRootElement();
-//          visualizations = racine.getChild("visualizations");
-//          NameVisu = visualizations.getChild("nuage3D");
-//          x = (NameVisu.getChild("nuage3D").getContentSize()-2)/2;
-//          NameProfil = NameVisu.getChild("profil"+i);
+    static void ReadXMLFileVisualisations(String fichier, int i) throws Exception {
+          SAXBuilder sxb = new SAXBuilder();
+          document = sxb.build(new File(fichier));
+          racine = document.getRootElement();
+          visualizations = racine.getChild("visualizations");
+          NameVisu = visualizations.getChild("nuage3D");
+          NameProfil = NameVisu.getChild("profil"+i);
      }
 
     static void ReadXMLFileGA(String fichier, int i) throws Exception {
@@ -1842,10 +1826,6 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
           }
           }
           }
-//          for(int j=0; j<Individual_Size.size(); j++){
-//            Element VisualAtt = NameProfil.getChild(appariement.get(indice).get(j).getName_v_data());
-//            VisualAtt.setText(appariement.get(indice).get(j).getName_data());
-//          }
        }
 
     static void UpdateElement_InitialPopulation(int Individual_Size, List<List<Appariement>> appariement, int indice, List<Normalisation> listNormalisation) {
@@ -2023,6 +2003,8 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
 
     private void updatePreview(String path, int profil){
         
+        initilisationBackground();
+        updateSelectedIndividual(profil);
         if(visu3D9!=null){
         visu3D9.destroy();
         visu3D9 = null;
@@ -2033,7 +2015,47 @@ CreateNewPopulationButton.addActionListener(new java.awt.event.ActionListener() 
         visu3D9.createScene();
         scrollpane9.setViewportView(visu3D9.getCustomCanvas3D());
     }
-
+    
+    private void updateSelectedIndividual(int profil){
+        
+        switch(profil){
+            case 0 :
+            panel1.setBackground(Color.DARK_GRAY);    
+            break;
+                
+            case 1 :
+            panel2.setBackground(Color.DARK_GRAY);
+            break;    
+            
+            case 2 :
+            panel3.setBackground(Color.DARK_GRAY);    
+            break;
+                
+            case 3 :
+            panel4.setBackground(Color.DARK_GRAY);
+            break; 
+                
+            case 4 :
+            panel5.setBackground(Color.DARK_GRAY);    
+            break;
+                
+            case 5 :
+            panel6.setBackground(Color.DARK_GRAY);
+            break; 
+                
+            case 6 :
+            panel7.setBackground(Color.DARK_GRAY);    
+            break;
+                
+            case 7 :
+            panel8.setBackground(Color.DARK_GRAY);
+            break;     
+            
+            default:;
+        }
+        
+    }
+    
     public ArrayList getProfilArrayList(String profilSelected) {
         ArrayList list = new ArrayList();
 
